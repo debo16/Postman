@@ -1,0 +1,182 @@
+{
+	"info": {
+		"_postman_id": "f6c03876-09ed-4447-a53b-6263f62b92b6",
+		"name": "AirlinesDemo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26601076",
+		"_collection_link": "https://grey-sunset-777723.postman.co/workspace/My-Workspace~1006d62a-003d-42af-842e-c63fc58bf8cf/collection/26601076-f6c03876-09ed-4447-a53b-6263f62b92b6?action=share&creator=26601076&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "get all airlines details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const jsondata = pm.response.json();\r",
+							"var print = jsondata.length;\r",
+							"console.log(print);\r",
+							"for(var i= 0; i<print; i++){\r",
+							"    //var data = jsondata[i]\r",
+							"    //console.log(data)\r",
+							"    if(jsondata[i].name==\"Singapore Airlines\")\r",
+							"    {\r",
+							"      var print1 = jsondata[i].id;\r",
+							"      console.log(print1)\r",
+							"        pm.environment.set(\"id\", print1);\r",
+							"    }\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Globe1}}{{URL2}}v1/airlines",
+					"host": [
+						"{{Globe1}}{{URL2}}v1"
+					],
+					"path": [
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SriLankaAirways",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{id}},\r\n    \"name\": \"Sri Lankan Airways\",\r\n    \"country\": \"Sri Lanka\",\r\n\"logo\":\"https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png\",\r\n    \"slogan\": \"From Sri Lanka\",\r\n    \"head_quaters\": \"Katunayake, Sri Lanka\",\r\n    \"website\": \"www.srilankaairways.com\",\r\n    \"established\": \"1990\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.instantwebtools.net/v1/airlines",
+					"protocol": "https",
+					"host": [
+						"api",
+						"instantwebtools",
+						"net"
+					],
+					"path": [
+						"v1",
+						"airlines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Airline ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.instantwebtools.net/v1/airlines/:id",
+					"protocol": "https",
+					"host": [
+						"api",
+						"instantwebtools",
+						"net"
+					],
+					"path": [
+						"v1",
+						"airlines",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create passenger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"trips\": 250,\r\n    \"airline\": 5 }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.instantwebtools.net/v1/passenger",
+					"protocol": "https",
+					"host": [
+						"api",
+						"instantwebtools",
+						"net"
+					],
+					"path": [
+						"v1",
+						"passenger"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
